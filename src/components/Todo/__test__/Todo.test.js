@@ -52,6 +52,6 @@ describe("Todo", () => {
     addTask(["Go Grocery Shopping"]);
     const divElement = screen.getByText(/Go Grocery Shopping/i);
     fireEvent.click(divElement);
-    expect(divElement).toHaveClass("todo-item-active"); //
+    expect(divElement).toHaveClass("todo-item-active");
   });
 });
