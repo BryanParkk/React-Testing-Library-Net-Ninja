@@ -8,8 +8,20 @@ export default function FollowersList() {
 
   useEffect(() => {
     const fetchFollowers = async () => {
-      const { data } = await axios.get("https://randomuser.me/api/?results=5");
-      setFollowers(data.results);
+      try {
+        const response = await axios.get(
+          "https://randomuser.me/api/?results=5"
+        );
+        const data = response?.data;
+        if (data?.results) {
+          setFollowers(data.results);
+        } else {
+          setFollowers([]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch followers:", error);
+        setFollowers([]);
+      }
     };
 
     fetchFollowers();
